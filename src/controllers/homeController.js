@@ -1,5 +1,8 @@
 // Home
 
 exports.index = (req, res) => {
-  res.render('index');
+  if (!req.session.user) {
+    return res.redirect('/login');
+  }
+  return res.render('index');
 };
