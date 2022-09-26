@@ -12,6 +12,6 @@ route.get('/login', loginController.index);
 
 // Register routes
 route.get('/register', registerController.index);
-// route.post('/register', )
+route.post('/register', registerController.register);
 
 module.exports = route;
