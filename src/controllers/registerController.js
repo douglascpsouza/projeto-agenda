@@ -1,5 +1,5 @@
 // Register Model
-const { RegisterModel } = require('../models/RegisterModel');
+const { Register } = require('../models/RegisterModel');
 
 exports.index = (req, res) => {
   return res.render('register');
@@ -7,7 +7,7 @@ exports.index = (req, res) => {
 
 exports.register = async function (req, res) {
   try {
-    const register = new RegisterModel(req.body);
+    const register = new Register(req.body);
     await register.registerUser();
 
     if (register.errors.length > 0) {
@@ -19,9 +19,7 @@ exports.register = async function (req, res) {
     }
 
     req.flash('success', 'Usuário cadastrado com sucesso.');
-    req.session.save(() => {
-      return res.redirect('/login');
-    });
+    req.session.save(() => res.redirect('/login'));
   } catch (err) {
     console.log(err);
     return res.render('404');
