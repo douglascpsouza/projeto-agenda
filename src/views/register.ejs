@@ -1,0 +1,44 @@
+<%- include('includes/head') %>
+    <%- include('includes/nav') %>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1"></div>
+
+                <div class="col-lg-10 my-4">
+                    <h1 class="text-center">Criar Conta</h1>
+                    <p class="text-center lead">Crie sua conta conosco.</p>
+
+                    <div class="row justify-content-md-center">
+                        <section class="col-lg-auto">
+                            <h3>Faça seu cadastro</h3>
+                            <p>Preencha caso ainda não tenha uma conta</p>
+                            <form class="form-register" action="/register" method="post">
+                                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nome</label>
+                                    <input type="email" class="form-control" id="name" name="name" placeholder="Nome Completo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="signupEmail" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="signupEmail" name="signupEmail" placeholder="email@email.com.br">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmationEmail" class="form-label">Confirmar E-mail</label>
+                                    <input type="email" class="form-control" id="confirmationEmail" name="confirmationEmail" placeholder="email@email.com.br">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="signupPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="signupPassword" name="signupPassword">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Criar Conta</button>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+
+        <%- include('includes/footer') %>
