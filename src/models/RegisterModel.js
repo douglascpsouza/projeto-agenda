@@ -20,7 +20,7 @@ class Register {
   }
 
   async registerUser() {
-    this.validateUserData();
+    this.validateNewUser();
     if (this.errors.length > 0) return;
 
     await this.checkEmailInDB();
@@ -30,17 +30,14 @@ class Register {
 
     this.hashPassword();
 
-    try {
-      // Register user
-      this.user = await RegisterModel.create(this.body);
-    } catch (err) {
-      console.log(err);
-    }
+    // Register user
+    this.user = await RegisterModel.create(this.body);
   }
 
-  validateUserData() {
+  validateNewUser() {
     this.setInputAsString();
     this.checkBlankFields();
+    this.confirmEmail();
     this.validateEmail();
     this.validatePassword();
   }
@@ -62,10 +59,14 @@ class Register {
     }
   }
 
-  validateEmail() {
+  confirmEmail() {
     if (this.body.email !== this.body.confirmation) {
       this.errors.push('Confirmação do e-mail não confere.');
-    } else if (!validator.isEmail(this.body.email)) {
+    }
+  }
+
+  validateEmail() {
+    if (!validator.isEmail(this.body.email)) {
       this.errors.push('E-mail inválido.');
     }
   }
@@ -81,7 +82,7 @@ class Register {
   async checkEmailInDB() {
     const user = await RegisterModel.findOne({ email: this.body.email });
     if (user) {
-      this.errors.push('E-mail já cadastrado.')
+      this.errors.push('E-mail já cadastrado.');
     }
   }
 
@@ -99,4 +100,4 @@ class Register {
   }
 }
 
-module.exports = Register;
+module.exports = { Register, RegisterModel };

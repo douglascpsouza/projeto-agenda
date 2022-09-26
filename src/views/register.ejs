@@ -16,7 +16,7 @@
                             <h3>Faça seu cadastro</h3>
                             <p>Preencha caso ainda não tenha uma conta</p>
                             <form class="form-register" action="/register" method="post">
-                                <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+                                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nome</label>
                                     <input type="text" class="form-control" id="name" name="name"
