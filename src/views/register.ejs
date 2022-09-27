@@ -1,0 +1,57 @@
+<%- include('includes/head') %>
+    <%- include('includes/nav') %>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1"></div>
+
+                <div class="col-lg-10 my-4">
+                    <h1 class="text-center">Criar Conta</h1>
+                    <p class="text-center lead">Crie sua conta conosco.</p>
+
+                    <%- include('includes/messages') %>
+
+                    <div class="row justify-content-md-center">
+                        <section class="col-lg-auto">
+                            <h3>Faça seu cadastro</h3>
+                            <p>Preencha caso ainda não tenha uma conta</p>
+                            <form class="form-register" action="/register" method="post">
+                                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        autofocus placeholder="Nome Completo" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="email@email.com.br" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmation" class="form-label">Confirmar E-mail</label>
+                                    <input type="email" class="form-control" id="confirmation" name="confirmation"
+                                        placeholder="email@email.com.br" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Senha</label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="**********" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Criar Conta</button>
+                                <div class="form-text mt-2">REQUISITOS PARA A SENHA:</div>
+                                <div class="form-text my-0">A senha deve ter entre 8 e 18 caracteres.</div>
+                                <div class="form-text my-0">A senha deve conter ao menos um dígito numérico.</div>
+                                <div class="form-text my-0">A senha deve conter ao menos uma letra maiúscula.</div>
+                                <div class="form-text my-0">A senha deve conter ao menos uma letra minúscula.</div>
+                                <div class="form-text my-0">A senha deve conter ao menos um caractere do tipo símbolo.
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+
+        <%- include('includes/footer') %>
