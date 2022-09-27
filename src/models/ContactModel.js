@@ -27,6 +27,15 @@ class Contact {
     this.contact = await ContactModel.create(this.body);
   }
 
+  async updateContact(id) {
+    this.validateContact();
+    if (this.errors.length > 0) return;
+
+    this.prepareDataForDB();
+
+    this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true });
+  }
+
   validateContact() {
     this.setInputAsString();
     this.checkBlankFields();
@@ -45,7 +54,7 @@ class Contact {
     if (!this.body.name) {
       this.errors.push('O campo Nome deve ser preenchido');
     } else if (!this.body.phone && !this.body.email) {
-      this.errors.push('Telefone ou Email deve ser preenchido.')
+      this.errors.push('Telefone ou E-mail deve ser preenchido.');
     }
   }
 
@@ -62,6 +71,30 @@ class Contact {
       phone: this.body.phone,
       email: this.body.email
     };
+  }
+
+  // Static Methods
+
+  static async findById(id) {
+    if (typeof id !== 'string') {
+      return null;
+    }
+    const contactById = await ContactModel.findById(id);
+    return contactById;
+  }
+
+  static async findAllContacts() {
+    const contacts = await ContactModel.find()
+      .sort({ name: 1 });
+    return contacts;
+  }
+
+  static async deleteById(id) {
+    if (typeof id !== 'string') {
+      return null;
+    }
+    const contact = await ContactModel.findByIdAndDelete(id);
+    return contact;
   }
 }
 

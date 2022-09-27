@@ -14,25 +14,40 @@
 
                     <div class="row justify-content-md-center">
                         <div class="col-md-auto">
-                            <form class="form-register" action="/contact" method="post">
+
+                            <% if (!contact._id) { %>
+                             <form class="form-register" action="/contact" method="post">
+                            <% } else { %>
+                             <form class="form-register" action="/contact/<%= contact._id %>" method="post">
+                            <% } %>
                                 <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+                                <input type="hidden" name="_id" value=<%= contact._id %>>
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="name" name="name" autofocus placeholder="Nome" required>
+                                    <input type="text" class="form-control" id="name" name="name" autocomplete="off"
+                                        autofocus placeholder="Nome" required value="<%= contact.name %>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="surname" class="form-label">Sobrenome</label>
-                                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Sobrenome">
+                                    <input type="text" class="form-control" id="surname" name="surname" autocomplete="off"
+                                        placeholder="Sobrenome" value="<%= contact.surname %>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Telefone</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="XX-XXXXX-XXXX">
+                                    <input type="tel" class="form-control" id="phone" name="phone" autocomplete="off"
+                                        placeholder="XX-XXXXX-XXXX" value="<%= contact.phone %>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">E-mail</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="email@email.com.br">
+                                    <input type="email" class="form-control" id="email" name="email" autocomplete="off"
+                                        placeholder="email@email.com.br" value="<%= contact.email %>">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                                <% if (!contact._id) { %>
+                                 <button type="submit" class="btn btn-primary">Adicionar</button>
+                                <% } else { %>
+                                 <button type="submit" class="btn btn-primary">Editar</button>
+                                <% } %>
                             </form>
                         </div>
                     </div>

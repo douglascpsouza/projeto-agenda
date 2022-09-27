@@ -15,6 +15,9 @@ route.get('/', loginRequired, homeController.index);
 // Contact routes
 route.get('/contact', loginRequired, contactController.index);
 route.post('/contact', contactController.create);
+route.get('/contact/:id', loginRequired, contactController.edit);
+route.post('/contact/:id', contactController.update);
+route.get('/contact/delete/:id', loginRequired, contactController.delete);
 
 // Login routes
 route.get('/login', loginController.index);
