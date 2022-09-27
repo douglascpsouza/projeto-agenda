@@ -7,32 +7,43 @@
         
         <div class="col-lg-10 my-3">
             <h1 class="text-center">Agenda</h1>
-            <p class="text-center lead">Seus contatos.</p>
-
-            <div class="row">
-                <div class="col my-3">
-                    <div class="alert alert-danger">Mensagem de erro</div>
-                </div>
-            </div>
+            <% if (contacts.length > 0) { %>
+              <p class="text-center lead">Seus contatos.</p>
+            <% } else { %>
+              <p class="text-center lead">Ainda não existem contatos cadastrados.</p>
+            <% } %>
+            
         </div>
 
-        <div class="responsive-table">
-            <table class="table my-3">
+        <%- include('includes/messages') %>
+
+        <div class="table-responsive">
+            <table class="table table-striped my-3">
+                <% if (contacts.length > 0) { %>
                 <thead>
                     <tr>
                         <th>Nome</th>
                         <th>Sobrenome</th>
                         <th>Telefone</th>
                         <th>E-mail</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
+                <% } %>
                 <tbody>
+                    <% contacts.forEach(contact => { %>
                     <tr>
-                        <td>Douglas</td>
-                        <td>Souza</td>
-                        <td>+55-11-99999-9999</td>
-                        <td>douglassouza@email.com</td>
+                        <td><%= contact.name %></td>
+                        <td><%= contact.surname %></td>
+                        <td><%= contact.phone %></td>
+                        <td><%= contact.email %></td>
+                        <td><a href="/contact/<%= contact._id %>">
+                            <img alt="Edit icon" src="/assets/img/edit.png" style="width: 1.5rem;"></a></td>
+                        <td><a href="/contact/delete/<%= contact._id %>">
+                            <img src="/assets/img/bin.png" alt="Bin icon" style="width: 1.5rem;"></a></td>
                     </tr>
+                    <% }) %>
                 </tbody>
             </table>
         </div>

@@ -1,0 +1,58 @@
+<%- include('includes/head') %>
+    <%- include('includes/nav') %>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1"></div>
+
+                <div class="col-lg-10 my-3">
+                    <h1 class="text-center">Administrar Contatos</h1>
+                    <p class="text-center lead">Crie ou edite seus contatos.</p>
+                </div>
+
+                <%- include('includes/messages') %>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-auto">
+
+                            <% if (!contact._id) { %>
+                             <form class="form-register" action="/contact" method="post">
+                            <% } else { %>
+                             <form class="form-register" action="/contact/<%= contact._id %>" method="post">
+                            <% } %>
+                                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+                                <input type="hidden" name="_id" value=<%= contact._id %>>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="name" name="name" autocomplete="off"
+                                        autofocus placeholder="Nome" required value="<%= contact.name %>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="surname" class="form-label">Sobrenome</label>
+                                    <input type="text" class="form-control" id="surname" name="surname" autocomplete="off"
+                                        placeholder="Sobrenome" value="<%= contact.surname %>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Telefone</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" autocomplete="off"
+                                        placeholder="XX-XXXXX-XXXX" value="<%= contact.phone %>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="email" name="email" autocomplete="off"
+                                        placeholder="email@email.com.br" value="<%= contact.email %>">
+                                </div>
+
+                                <% if (!contact._id) { %>
+                                 <button type="submit" class="btn btn-primary">Adicionar</button>
+                                <% } else { %>
+                                 <button type="submit" class="btn btn-primary">Editar</button>
+                                <% } %>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-1"></div>
+            </div>
+        </div>
+
+        <%- include('includes/footer') %>
