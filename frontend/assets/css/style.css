@@ -1,0 +1,6 @@
+/* Form fields error message */
+.error-text {
+  color: red;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+  }

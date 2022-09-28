@@ -14,10 +14,10 @@
                         <section class="col-md-auto">
                             <h3>Fazer login</h3>
                             <p>Preencha, abaixo, seus dados cadastrados.</p>
-                            <form class="form-login" action="/login" method="post">
+                            <form class="login-form" action="/login" method="post">
                                 <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email address</label>
+                                    <label for="email" class="form-label">E-mail</label>
                                     <input type="email" class="form-control" id="email" name="email"
                                         placeholder="email@email.com.br">
                                 </div>

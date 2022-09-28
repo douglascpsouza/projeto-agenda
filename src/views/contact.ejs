@@ -4,7 +4,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-1"></div>
-
                 <div class="col-lg-10 my-3">
                     <h1 class="text-center">Administrar Contatos</h1>
                     <p class="text-center lead">Crie ou edite seus contatos.</p>
@@ -16,9 +15,9 @@
                         <div class="col-md-auto">
 
                             <% if (!contact._id) { %>
-                             <form class="form-register" action="/contact" method="post">
+                             <form class="contact-form" action="/contact" method="post">
                             <% } else { %>
-                             <form class="form-register" action="/contact/<%= contact._id %>" method="post">
+                             <form class="contact-form" action="/contact/<%= contact._id %>" method="post">
                             <% } %>
                                 <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                                 <input type="hidden" name="_id" value=<%= contact._id %>>
